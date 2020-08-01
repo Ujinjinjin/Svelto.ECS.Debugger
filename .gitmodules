@@ -1,0 +1,3 @@
+[submodule "src/GameClient/Assets/Svelto/Svelto.ECS"]
+	path = src/GameClient/Assets/Svelto/Svelto.ECS
+	url = https://github.com/sebas77/Svelto.ECS.git
