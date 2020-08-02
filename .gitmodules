@@ -1,9 +1,12 @@
 [submodule "src/GameClient/Assets/Svelto/Svelto.ECS"]
 	path = src/GameClient/Assets/Svelto/Svelto.ECS
 	url = https://github.com/sebas77/Svelto.ECS.git
+	branch = SECS_3_0_BETA
 [submodule "src/GameClient/Assets/Svelto/Svelto.Tasks"]
 	path = src/GameClient/Assets/Svelto/Svelto.Tasks
 	url = https://github.com/sebas77/Svelto.Tasks.git
+	branch = Svelto-Tasks-2_0_New
 [submodule "src/GameClient/Assets/Svelto/Svelto.Common"]
 	path = src/GameClient/Assets/Svelto/Svelto.Common
 	url = https://github.com/sebas77/Svelto.Common.git
+	branch = Svelto_Common_3_0
