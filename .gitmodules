@@ -4,3 +4,6 @@
 [submodule "src/GameClient/Assets/Svelto/Svelto.Tasks"]
 	path = src/GameClient/Assets/Svelto/Svelto.Tasks
 	url = https://github.com/sebas77/Svelto.Tasks.git
+[submodule "src/GameClient/Assets/Svelto/Svelto.Common"]
+	path = src/GameClient/Assets/Svelto/Svelto.Common
+	url = https://github.com/sebas77/Svelto.Common.git
