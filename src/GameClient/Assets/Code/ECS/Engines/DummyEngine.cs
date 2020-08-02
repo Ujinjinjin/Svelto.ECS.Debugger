@@ -1,4 +1,5 @@
-﻿using Code.Infrastructure;
+﻿using Code.ECS.EntityViewComponents;
+using Code.Infrastructure;
 using Svelto;
 using Svelto.ECS;
 using Svelto.Tasks.ExtraLean;
@@ -19,7 +20,16 @@ namespace Code.ECS.Engines
 		{
 			while (true)
 			{
-				Console.LogDebug("Dummy engine");
+				var (hoverableComponents, positionComponents, count) = entitiesDB.QueryEntities<HoverableEntityViewComponent, PositionEntityViewComponent>(EcsGroups.GridGroup);
+
+				for (var i = 0; i < count; i++)
+				{
+					if (hoverableComponents[i].HoverableComponent.Hovered)
+					{
+						Console.Log(positionComponents[i].PositionComponent.Position.ToString());
+					}
+				}
+				
 				yield return null;
 			}
 
