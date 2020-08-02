@@ -28,8 +28,8 @@ sysinfo.txt
 
 .idea/
 
-Assets/Scenes/Local Scene.unity
-Assets/Scenes/LocalScene.unity
+**/Scenes/Local Scene.unity
+**/Scenes/LocalScene.unity
 
-Assets/Scenes/Local Scene.unity.meta
-Assets/Scenes/LocalScene.unity.meta
+**/Scenes/Local Scene.unity.meta
+**/Scenes/LocalScene.unity.meta
