@@ -8,8 +8,8 @@ To clone this repo to your local machine use:
 git clone HTTP_OR_SSH_URL
 ```
 
-To init submodules recusively use:
+To init submodules use (do not use `--recursive` flag):
 
 ```bash
-git submodule update --init --recursive
+git submodule update --init
 ```
