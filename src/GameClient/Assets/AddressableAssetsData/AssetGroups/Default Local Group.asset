@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 60934ae2a3b0ee043b6b594641c0cd28
+  m_SerializeEntries:
+  - m_GUID: 8807e8ee3f515c1419bfa4cc1e4ef0f4
+    m_Address: Grid
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 8019113155303119327, guid: 8807e8ee3f515c1419bfa4cc1e4ef0f4,
+      type: 3}
+    m_TargetAsset: {fileID: 8019113155303119327, guid: 8807e8ee3f515c1419bfa4cc1e4ef0f4,
+      type: 3}
+  - m_GUID: c76fb4eb84b797c4a94f81138dc0dcb2
+    m_Address: GridCell
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 175c55256341dbd4cb6164c57f884ace, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: af10f233a9796a44e85907906ac6e257, type: 2}
+    - {fileID: 11400000, guid: 8d01ed775f2715949b3a7b25ab41b621, type: 2}

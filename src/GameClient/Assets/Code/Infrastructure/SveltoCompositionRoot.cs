@@ -1,5 +1,6 @@
 ﻿using Code.ECS;
 using Code.ECS.Engines;
+using Code.Factories;
 using Svelto.Context;
 using Svelto.ECS;
 using Svelto.ECS.Hybrid;
@@ -31,14 +32,18 @@ namespace Code.Infrastructure
 			var entityFunctions = _enginesRoot.GenerateEntityFunctions();
 			var entityStreamConsumerFactory = _enginesRoot.GenerateConsumerFactory();
 			
+			var gameObjectFactory = new GameObjectFactory();
+			
 			// Create engines
 			var dummyEngine = new DummyEngine();
+			var gridSpawnEngine = new GridSpawnEngine(gameObjectFactory, entityFactory);
 			
 			// Register engines
 			_enginesRoot.AddEngine(dummyEngine);
+			_enginesRoot.AddEngine(gridSpawnEngine);
 			
-			BuildGridFromScene(contextHolder, entityFactory);
-		}		
+			// BuildGridFromScene(contextHolder, entityFactory);
+		}
 		
 		/// <summary> Create grid cell entities from scene </summary>
 		[Obsolete("Grid should be created from engine and this method will be deleted")]
