@@ -13,14 +13,17 @@ using UnityEngine;
 
 namespace Code.Infrastructure
 {
-	internal class SveltoCompositionRoot : ICompositionRoot
+	public class SveltoCompositionRoot : ICompositionRoot
 	{
 		private EnginesRoot _enginesRoot;
 		private UnityEntitiesSubmissionScheduler _unityEntitiesSubmissionScheduler;
+
+		public EnginesRoot EnginesRoot => _enginesRoot;
 		
 		public void OnContextInitialized<T>(T contextHolder)
 		{
 			InitializeCompositionRoot(contextHolder as UnityContext);
+			CompositionRootHolder.SetCompositionRoot(this);
 		}
 
 		private void InitializeCompositionRoot(UnityContext contextHolder)

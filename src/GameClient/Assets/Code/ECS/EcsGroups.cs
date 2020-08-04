@@ -2,7 +2,7 @@
 
 namespace Code.ECS
 {
-	internal class EcsGroups
+	public static class EcsGroups
 	{
 		public static readonly ExclusiveGroup Camera = new ExclusiveGroup();
 		

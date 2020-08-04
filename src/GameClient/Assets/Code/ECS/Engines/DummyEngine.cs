@@ -1,4 +1,5 @@
-﻿using Code.ECS.EntityViewComponents;
+﻿using Code.Attributes;
+using Code.ECS.EntityViewComponents;
 using Code.Infrastructure;
 using Svelto;
 using Svelto.ECS;
@@ -7,6 +8,7 @@ using System.Collections;
 
 namespace Code.ECS.Engines
 {
+	[ObservableEngine(typeof(HoverableEntityViewComponent), typeof(PositionEntityViewComponent), nameof(EcsGroups.GridGroup))]
 	internal class DummyEngine : IQueryingEntitiesEngine
 	{
 		public EntitiesDB entitiesDB { get; set; }
