@@ -13,8 +13,10 @@ namespace Editor
 {
 	public class SveltoEcsEnginesEditorWindow : EditorWindow
 	{
-		Vector2 scrollPos;
-		
+		private Vector2 _scrollPos;
+
+		private readonly Dictionary<string, bool> _enginesDisplayStateIndex = new Dictionary<string, bool>();
+
 		[MenuItem("Svelto/Svelto.ECS/Engines")]
 		private static void ShowWindow()
 		{
@@ -33,25 +35,32 @@ namespace Editor
 			GUILayout.Label ("List of observable engines:", EditorStyles.boldLabel);
 
 			EditorGUILayout.BeginVertical();
-			scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+			_scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);
 			
 			for (var i = 0; i < observableEngines.Length; i++)
 			{
 				var observabilityAttributes = observableEngines[i]
 					.GetCustomAttributes<ObservableEngineAttribute>()
 					.ToArray();
-				EditorGUILayout.BeginHorizontal();
-				GUILayout.Label($"{i + 1}. {observableEngines[i].Name}");
-				
-				EditorGUILayout.BeginVertical();
-				for (var j = 0; j < observabilityAttributes.Length; j++)
-				{
-					DisplayComponents(observabilityAttributes[j]);
 
-					DisplayEntityCount(observabilityAttributes[j]);
-					GUILayout.Label(string.Empty);
+				EditorGUILayout.BeginHorizontal();
+				var engineExpanded = _enginesDisplayStateIndex.TryGetValue(observableEngines[i].Name, out var value) && value;
+				
+				_enginesDisplayStateIndex[observableEngines[i].Name] = EditorGUILayout.BeginFoldoutHeaderGroup(engineExpanded, $"{i + 1}. {observableEngines[i].Name}");
+
+				if (engineExpanded)
+				{
+					EditorGUILayout.BeginVertical();
+					for (var j = 0; j < observabilityAttributes.Length; j++)
+					{
+						DisplayComponents(observabilityAttributes[j]);
+						DisplayEntityCount(observabilityAttributes[j]);
+						GUILayout.Space(15);
+					}
+					EditorGUILayout.EndVertical();	
 				}
-				EditorGUILayout.EndVertical();
+
+				EditorGUILayout.EndFoldoutHeaderGroup();
 				EditorGUILayout.EndHorizontal();
 			}
 			EditorGUILayout.EndScrollView();
