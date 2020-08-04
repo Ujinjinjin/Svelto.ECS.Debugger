@@ -8,7 +8,9 @@ using System.Collections;
 
 namespace Code.ECS.Engines
 {
-	[ObservableEngine(typeof(HoverableEntityViewComponent), typeof(PositionEntityViewComponent), nameof(EcsGroups.GridGroup))]
+	[ObservableEngine(typeof(HoverableEntityViewComponent), typeof(PositionEntityViewComponent), typeof(EcsGroups), nameof(EcsGroups.GridGroup))]
+	[ObservableEngine(typeof(HoverableEntityViewComponent), typeof(EcsGroups), nameof(EcsGroups.GridGroup))]
+	[ObservableEngine(typeof(PositionEntityViewComponent), typeof(EcsGroups), nameof(EcsGroups.GridGroup))]
 	internal class DummyEngine : IQueryingEntitiesEngine
 	{
 		public EntitiesDB entitiesDB { get; set; }
