@@ -1,5 +1,5 @@
-﻿using Code.Attributes;
-using Code.ECS.EntityViewComponents;
+﻿using Code.ECS.EntityViewComponents;
+using Code.EditorTools.Attributes;
 using Code.Infrastructure;
 using Svelto;
 using Svelto.ECS;

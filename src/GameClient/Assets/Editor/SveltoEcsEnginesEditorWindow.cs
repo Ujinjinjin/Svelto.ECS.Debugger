@@ -1,6 +1,5 @@
-﻿using Code;
-using Code.Attributes;
-using Code.Infrastructure;
+﻿using Code.EditorTools;
+using Code.EditorTools.Attributes;
 using Svelto.ECS;
 using System;
 using System.Collections.Generic;
@@ -27,7 +26,24 @@ namespace Editor
 
 		private void OnGUI()
 		{
-			var assembly = Assembly.GetAssembly(typeof(SveltoCompositionRoot));
+			if (ObservableEnginesSingletonContext.CompositionRoot is null)
+			{
+				DisplaySveltoEcsEnginesEditorWindowHolder();
+			}
+			else
+			{
+				DisplaySveltoEcsEnginesEditorWindowContent();
+			}
+		}
+
+		private void DisplaySveltoEcsEnginesEditorWindowHolder()
+		{
+			GUILayout.Label ("To see list of observable engines, press Play button!", EditorStyles.boldLabel);
+		}
+
+		private void DisplaySveltoEcsEnginesEditorWindowContent()
+		{
+			var assembly = Assembly.GetAssembly(ObservableEnginesSingletonContext.CompositionRoot.GetType());
 			var observableEngines = assembly.GetTypes()
 				.Where(x => x.ContainsCustomAttribute(typeof(ObservableEngineAttribute)))
 				.ToArray();
@@ -131,12 +147,14 @@ namespace Editor
 
 			uint totalCount = 0;
 
+			var entitiesDb = GetEntitiesDbFromEnginesRoot(ObservableEnginesSingletonContext.EnginesRoot);
+
 			for (var i = 0; i < attribute.GroupNameList.Count; i++)
 			{
-				var result = methodRef.Invoke(CompositionRootHolder.CompositionRoot.EnginesRoot.EntitiesDb, new[] { GetEcsGroupByName(attribute.GroupNameList[i], attribute.EcsGroupsType) });
-				var count = constructedClass.GetProperty("count").GetValue(result);
+				var result = methodRef.Invoke(entitiesDb, new[] { GetEcsGroupByName(attribute.GroupNameList[i], attribute.EcsGroupsType) });
+				var count = constructedClass.GetProperty("count")?.GetValue(result);
 
-				totalCount += (uint)count;
+				totalCount += (uint)(count ?? 0);
 			}
 			
 			GUILayout.Label($"Entities count: {totalCount.ToString()}");
@@ -148,6 +166,14 @@ namespace Editor
 				.GetFields(BindingFlags.Public | BindingFlags.Static)
 				.Single(p => p.Name == groupName)
 				.GetValue(null);
+		}
+
+		private EntitiesDB GetEntitiesDbFromEnginesRoot(EnginesRoot enginesRoot)
+		{
+			return (EntitiesDB) enginesRoot.GetType()
+				.GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
+				.First(x => x.Name == "_entitiesDB")
+				.GetValue(enginesRoot);
 		}
 	}
 }

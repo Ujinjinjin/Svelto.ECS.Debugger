@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Code.Attributes
+namespace Code.EditorTools.Attributes
 {
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
 	public class ObservableEngineAttribute : Attribute

@@ -1,5 +1,6 @@
 ﻿using Code.ECS;
 using Code.ECS.Engines;
+using Code.EditorTools;
 using Code.Factories;
 using Svelto.Context;
 using Svelto.ECS;
@@ -17,13 +18,11 @@ namespace Code.Infrastructure
 	{
 		private EnginesRoot _enginesRoot;
 		private UnityEntitiesSubmissionScheduler _unityEntitiesSubmissionScheduler;
-
-		public EnginesRoot EnginesRoot => _enginesRoot;
 		
 		public void OnContextInitialized<T>(T contextHolder)
 		{
 			InitializeCompositionRoot(contextHolder as UnityContext);
-			CompositionRootHolder.SetCompositionRoot(this);
+			this.EnableSveltoDebugWindow(_enginesRoot);
 		}
 
 		private void InitializeCompositionRoot(UnityContext contextHolder)
